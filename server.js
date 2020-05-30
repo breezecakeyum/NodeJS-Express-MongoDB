@@ -4,6 +4,8 @@ const morgan = require('morgan');
 
 const bodyParser = require('body-parser');
 const campsiteRouter = require('./routes/campsiteRouter');
+const promotionRouter = require('./routes/promotionRouter');
+const partnerRouter = require('./routes/partnerRouter');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -13,6 +15,8 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use('/campsites', campsiteRouter);
+app.use('/partners', partnerRouter);
+app.use('/promotions', promotionRouter);
 
 app.use(express.static(__dirname + '/public'));
 
