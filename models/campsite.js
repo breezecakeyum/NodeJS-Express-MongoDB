@@ -18,9 +18,7 @@ const commentSchema = new Schema({
         type: String,
         required: true
     }
-}, {
-    timestamps: true
-});
+}, {timestamps: true});
 
 const campsiteSchema = new Schema({
     name: {
@@ -50,9 +48,7 @@ const campsiteSchema = new Schema({
         default: false
     },
     comments: [commentSchema]
-}, {
-    timestamps: true
-});
+}, {timestamps: true});
 
 const Campsite = mongoose.model('Campsite', campsiteSchema);
 
