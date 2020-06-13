@@ -13,6 +13,10 @@ const partnerRouter = require('./routes/partnerRouter');
 const passport = require('passport');
 const authenticate = require('./authenticate');
 
+const config = require('./config');
+
+const url = config.mongoUrl;
+
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
