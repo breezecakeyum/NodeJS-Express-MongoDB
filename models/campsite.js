@@ -26,6 +26,10 @@ const campsiteSchema = new Schema({
         required: true,
         unique: true
     },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     description: {
         type: String,
         required: true
