@@ -15,9 +15,9 @@ const commentSchema = new Schema({
         required: true
     },
     author: {
-        type: String,
-        required: true
-    }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
 }, {timestamps: true});
 
 const campsiteSchema = new Schema({
@@ -25,10 +25,6 @@ const campsiteSchema = new Schema({
         type: String,
         required: true,
         unique: true
-    },
-    author: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
     },
     description: {
         type: String,

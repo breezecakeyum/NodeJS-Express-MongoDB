@@ -1,4 +1,5 @@
 const User = require('../models/user');
+var express = require('express');
 
 const router = express.Router();
 const passport = require('passport');
@@ -6,8 +7,15 @@ const passport = require('passport');
 const authenticate = require('../authenticate');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-    res.send('respond with a resource');
+router.get('/',authenticate.verifyUser, authenticate.verifyAdmin, function(req, res, next) {  
+    User.find()
+    .then(users => {
+        res.statusCode = 200;
+        res.setHeader('Content-Type', 'application/json');
+        res.json(users);
+
+    }) 
+    .catch(err => next(err));
 });
 
 router.post('/signup', (req, res) => {
@@ -23,6 +31,9 @@ router.post('/signup', (req, res) => {
             }
             if (req.body.lastname) {
                 user.lastname = req.body.lastname;
+            }
+            if (req.body.admin) {
+                user.admin = req.body.admin;
             }
             user.save(err => {
                 if (err) {
